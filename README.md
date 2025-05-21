@@ -1,75 +1,109 @@
-# Nuxt Minimal Starter
+# GitHub Receipt Generator
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A beautiful web application that generates a receipt-style visualization of your GitHub profile statistics. Built with Nuxt.js and Tailwind CSS.
 
-## Setup
+![GitHub Receipt Generator Preview](preview.png)
 
-Make sure to install dependencies:
+## 🌟 Features
 
-```bash
-# npm
-npm install
+- 📊 Comprehensive GitHub Stats:
+  - Total repositories, stars, and forks
+  - Follower and following counts
+  - Top programming languages
+  - Most active day of the week
+  - 30-day commit count
+  - Custom contribution score
 
-# pnpm
-pnpm install
+- 🎨 Beautiful Design:
+  - Receipt-style layout
+  - Paper-like texture and effects
+  - Decorative edges
+  - Barcode generation
+  - Dark/Light mode support
 
-# yarn
-yarn install
+- 💾 Export Options:
+  - Download as PNG
+  - Share functionality (where supported)
 
-# bun
-bun install
-```
+## 🚀 Quick Start
 
-## Development Server
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/github-receipt.git
+   cd github-receipt
+   ```
 
-Start the development server on `http://localhost:3000`:
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
 
-```bash
-# npm
-npm run dev
+3. Run the development server:
+   ```bash
+   npm run dev
+   ```
 
-# pnpm
-pnpm dev
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-# yarn
-yarn dev
+## 🛠️ Built With
 
-# bun
-bun run dev
-```
+- [Nuxt.js](https://nuxt.com/) - The Vue.js Framework
+- [Tailwind CSS](https://tailwindcss.com/) - For styling
+- [JsBarcode](https://github.com/lindell/JsBarcode) - For barcode generation
+- [html2canvas](https://html2canvas.hertzen.com/) - For receipt export
 
-## Production
+## 📱 Usage
 
-Build the application for production:
+1. Enter a GitHub username in the input field
+2. Click "Generate" or press Enter
+3. View your GitHub stats in a beautiful receipt format
+4. Use the floating buttons to:
+   - Download the receipt as PNG
+   - Share the receipt (on supported platforms)
+5. Toggle between dark and light modes using the theme switch
 
-```bash
-# npm
-npm run build
+## 🔄 API Rate Limits
 
-# pnpm
-pnpm build
+This application uses the GitHub API to fetch user data. Please note:
+- For unauthenticated requests, the rate limit is 60 requests per hour
+- The app fetches multiple endpoints for comprehensive stats
+- Consider implementing authentication for higher rate limits in production
 
-# yarn
-yarn build
+## 🎨 Customization
 
-# bun
-bun run build
-```
+### Styling
+The app uses Tailwind CSS for styling. Modify the styles in:
+- `app.vue` - Main layout and form
+- `components/GithubReceipt.vue` - Receipt styling
+- `components/DarkModeToggle.vue` - Theme toggle
 
-Locally preview production build:
+### Receipt Content
+Modify the receipt layout and data in `components/GithubReceipt.vue`
 
-```bash
-# npm
-npm run preview
+### GitHub API
+API calls and data processing are handled in `utils/github.js`
 
-# pnpm
-pnpm preview
+## 📝 License
 
-# yarn
-yarn preview
+This project is open source and available under the [MIT License](LICENSE).
 
-# bun
-bun run preview
-```
+## 🤝 Contributing
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/yourusername/github-receipt/issues).
+
+## 👏 Acknowledgments
+
+- GitHub API for providing the data
+- The open-source community for the amazing tools
+- All contributors who help improve this project
+
+## 📸 Screenshots
+
+### Light Mode
+![Light Mode](light-mode.png)
+
+### Dark Mode
+![Dark Mode](dark-mode.png)
+
+---
+Made with ❤️ by [Your Name]
