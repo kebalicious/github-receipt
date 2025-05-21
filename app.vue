@@ -23,9 +23,27 @@
       <DarkModeToggle />
     </div>
 
-    <!-- Mobile Theme Toggle -->
+    <!-- Mobile Action Buttons -->
     <div class="sm:hidden right-4 bottom-4 left-4 z-50 fixed flex justify-center">
-      <div class="bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-lg">
+      <div class="flex gap-2 bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-lg">
+        <template v-if="showReceipt">
+          <button @click="downloadReceipt('png')"
+            class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 p-2 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
+            title="Download Receipt"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </button>
+          <button @click="shareReceipt()"
+            class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 p-2 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
+            title="Share Receipt"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+            </svg>
+          </button>
+        </template>
         <DarkModeToggle />
       </div>
     </div>
