@@ -12,7 +12,9 @@
             Generate a receipt for your GitHub contributions
           </h4>
         </div>
-        <div class="flex gap-4">
+        
+        <!-- Show input field only when not showing receipt or when generating new -->
+        <div v-if="!showReceipt" class="flex gap-4">
           <div class="flex flex-1">
             <div class="flex items-center bg-white dark:bg-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 border-r-0 rounded-l-lg text-gray-900 dark:text-white">
               @
@@ -33,6 +35,17 @@
             {{ loading ? 'Generating...' : 'Generate' }}
           </button>
         </div>
+
+        <!-- Show Generate Other button when receipt is shown -->
+        <div v-else class="flex justify-center">
+          <button 
+            @click="generateOther"
+            class="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 text-white transition-colors"
+          >
+            Generate Other
+          </button>
+        </div>
+
         <p v-if="error" class="mt-4 text-red-500 dark:text-red-400">{{ error }}</p>
       </div>
 
@@ -42,8 +55,13 @@
         <p class="mt-4 text-gray-600 dark:text-gray-400">Fetching GitHub stats...</p>
       </div>
 
-      <GithubReceipt v-if="showReceipt && !loading" :username="username" :stats="githubStats"
-        @download="downloadReceipt" @share="shareReceipt" />
+      <GithubReceipt 
+        v-if="showReceipt && !loading" 
+        :username="username"
+        :stats="githubStats"
+        @download="downloadReceipt"
+        @share="shareReceipt"
+      />
     </div>
   </div>
 </template>
@@ -82,6 +100,13 @@ async function generateReceipt() {
   } finally {
     loading.value = false
   }
+}
+
+function generateOther() {
+  showReceipt.value = false
+  username.value = ''
+  githubStats.value = null
+  error.value = ''
 }
 
 async function downloadReceipt(format) {
