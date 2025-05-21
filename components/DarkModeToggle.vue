@@ -1,7 +1,7 @@
 <template>
   <button
     @click="toggleDarkMode"
-    class="top-4 right-4 fixed bg-gray-200 dark:bg-gray-700 p-2 rounded-lg transition-colors duration-200"
+    class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 p-2 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
     aria-label="Toggle Dark Mode"
   >
     <!-- Sun icon -->

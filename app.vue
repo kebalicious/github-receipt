@@ -1,9 +1,38 @@
 <template>
   <div class="bg-gray-100 dark:bg-gray-900 p-4 md:p-8 min-h-screen transition-colors duration-200">
-    <DarkModeToggle />
+    <!-- Desktop/Tablet Action Buttons -->
+    <div class="hidden top-4 right-4 z-50 fixed sm:flex items-center gap-2">
+      <button @click="showReceipt && downloadReceipt('png')"
+        class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 p-2 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
+        :class="{ 'opacity-50 cursor-not-allowed': !showReceipt }"
+        title="Download Receipt"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+        </svg>
+      </button>
+      <button @click="showReceipt && shareReceipt()"
+        class="bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 p-2 rounded-lg text-gray-700 dark:text-gray-300 transition-colors"
+        :class="{ 'opacity-50 cursor-not-allowed': !showReceipt }"
+        title="Share Receipt"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+        </svg>
+      </button>
+      <DarkModeToggle />
+    </div>
+
+    <!-- Mobile Theme Toggle -->
+    <div class="sm:hidden right-4 bottom-4 left-4 z-50 fixed flex justify-center">
+      <div class="bg-gray-100/80 dark:bg-gray-900/80 backdrop-blur-sm p-2 rounded-lg">
+        <DarkModeToggle />
+      </div>
+    </div>
+
     <div class="mx-auto max-w-lg">
       <!-- Username Input Section -->
-      <div class="mb-8 p-6 rounded-lg">
+      <div class="mb-8 p-4 md:p-6 rounded-lg">
         <div class="mb-6">
           <h1 class="mb-2 font-bold text-gray-800 dark:text-white text-2xl md:text-3xl text-center">
             GitHub Receipt Generator
@@ -14,8 +43,8 @@
         </div>
         
         <!-- Show input field only when not showing receipt or when generating new -->
-        <div v-if="!showReceipt" class="flex gap-4">
-          <div class="flex flex-1">
+        <div v-if="!showReceipt" class="flex sm:flex-row flex-col gap-3">
+          <div class="flex flex-1 w-full">
             <div class="flex items-center bg-white dark:bg-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 border-r-0 rounded-l-lg text-gray-900 dark:text-white">
               @
             </div>
@@ -23,14 +52,14 @@
               v-model="username" 
               type="text" 
               placeholder="Enter GitHub username"
-              class="flex-1 bg-white dark:bg-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 focus:border-transparent rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
+              class="flex-1 bg-white dark:bg-gray-700 px-4 py-2 border border-gray-300 dark:border-gray-600 focus:border-transparent rounded-r-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-w-0 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400"
               @keyup.enter="generateReceipt"
             />
           </div>
           <button 
             @click="generateReceipt"
             :disabled="loading"
-            class="bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 px-6 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 text-white transition-colors disabled:cursor-not-allowed"
+            class="bg-blue-500 hover:bg-blue-600 disabled:bg-blue-300 px-6 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 w-full sm:w-auto text-white transition-colors disabled:cursor-not-allowed"
           >
             {{ loading ? 'Generating...' : 'Generate' }}
           </button>
@@ -40,7 +69,7 @@
         <div v-else class="flex justify-center">
           <button 
             @click="generateOther"
-            class="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 text-white transition-colors"
+            class="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 w-full sm:w-auto text-white transition-colors"
           >
             Generate Other
           </button>
@@ -61,7 +90,14 @@
         :stats="githubStats"
         @download="downloadReceipt"
         @share="shareReceipt"
-      />
+      >
+        <!-- Pass dark mode toggle to floating bar on mobile -->
+        <template #dark-mode-toggle>
+          <div class="sm:hidden">
+            <DarkModeToggle />
+          </div>
+        </template>
+      </GithubReceipt>
     </div>
   </div>
 </template>
