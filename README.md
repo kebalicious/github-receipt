@@ -86,3 +86,5 @@ Contributions, issues, and feature requests are welcome! Feel free to check the 
 
 ---
 Made with ❤️ by [Kebalicious](https://www.github.com/kebalicious)
+
+###### Inspired by [Ankit](https://github.com/ankitkr0/gitreceipt.git)
