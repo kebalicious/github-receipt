@@ -11,6 +11,12 @@ export default defineNuxtConfig({
     configPath: 'tailwind.config.js'
   },
   content: {
+    // Enable preview mode
+    experimental: {
+      clientDB: true
+    },
+    // Document-driven mode
+    documentDriven: true,
     // Content module configuration
     highlight: {
       theme: 'github-dark',
