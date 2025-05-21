@@ -62,27 +62,6 @@ A beautiful web application that generates a receipt-style visualization of your
    - Share the receipt (on supported platforms)
 5. Toggle between dark and light modes using the theme switch
 
-## 🔄 API Rate Limits
-
-This application uses the GitHub API to fetch user data. Please note:
-- For unauthenticated requests, the rate limit is 60 requests per hour
-- The app fetches multiple endpoints for comprehensive stats
-- Consider implementing authentication for higher rate limits in production
-
-## 🎨 Customization
-
-### Styling
-The app uses Tailwind CSS for styling. Modify the styles in:
-- `app.vue` - Main layout and form
-- `components/GithubReceipt.vue` - Receipt styling
-- `components/DarkModeToggle.vue` - Theme toggle
-
-### Receipt Content
-Modify the receipt layout and data in `components/GithubReceipt.vue`
-
-### GitHub API
-API calls and data processing are handled in `utils/github.js`
-
 ## 📝 License
 
 This project is open source and available under the [MIT License](LICENSE).
